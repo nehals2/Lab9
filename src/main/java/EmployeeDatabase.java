@@ -30,8 +30,8 @@ public class EmployeeDatabase {
     /**
      * Returns the manager for the given employee.
      *
-     * @param employee
-     * @return
+     * @param employee Employee
+     * @return sfgrw
      */
     Employee findManager(final Employee employee) {
         Employee manager = null;
@@ -56,6 +56,11 @@ public class EmployeeDatabase {
         /*
          * Implement this function
          */
+        Employee manager1 = findManager(employee);
+        if (manager1 == null) {
+            return 0;
+        }
+        return 1 + countManagersAbove(manager1);
     }
 
     /**
@@ -70,6 +75,7 @@ public class EmployeeDatabase {
         /*
          * Implement this function
          */
+
     }
 
     /**
@@ -130,5 +136,19 @@ public class EmployeeDatabase {
 
         answer = database.countManagersAbove(betty);
         System.out.println("Betty has " + Integer.toString(answer) + " managers above her.\n");
+    }
+    /**.
+     * helper function
+     */
+    public ArrayList<Employee> mySub(final Employee e) {
+        ArrayList<Employee> output = new ArrayList<Employee>();
+        for (int i = 0; i < employees.size(); i++) {
+            Employee temp = employees.get(i);
+            String manager = temp.getManager();
+            if (manager.equals(e.getName())) {
+                output.add(temp);
+            }
+            return output;
+        }
     }
 }
